@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wings - Jewellery & Art</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin:0; padding:0; background:#f8f8f8; color:#333;}
+    header {background:#222; color:#fff; padding:15px; text-align:center;}
+    h1 {margin:0;}
+    nav {margin-top:10px;}
+    nav button {margin:0 5px; padding:8px 15px; border:none; border-radius:5px; cursor:pointer;}
+    nav button:hover {opacity:0.8;}
+    .container {padding:20px;}
+    h2 {margin-top:40px; color:#444;}
+    .products {display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px;}
+    .product {background:#fff; padding:10px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); text-align:center;}
+    .product img {max-width:100%; border-radius:5px;}
+    .product h3 {margin:10px 0 5px;}
+    .product p {margin:5px 0; font-weight:bold;}
+    .buy-btn {display:inline-block; margin-top:5px; padding:6px 12px; background:#25d366; color:#fff; text-decoration:none; border-radius:5px;}
+    .buy-btn:hover {background:#128c7e;}
+    footer {background:#222; color:#fff; text-align:center; padding:15px; margin-top:30px;}
+  </style>
+  <script>
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.innerText = el.getAttribute('data-' + lang);
+      });
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1 data-en="The Wings" data-hi="द विंग्स">The Wings</h1>
+    <p data-en="Jewellery & Art Products" data-hi="ज्वेलरी और कला उत्पाद">Jewellery & Art Products</p>
+    <nav>
+      <button onclick="setLanguage('en')">English</button>
+      <button onclick="setLanguage('hi')">हिंदी</button>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2 data-en="Jewellery Collection" data-hi="ज्वेलरी कलेक्शन">Jewellery Collection</h2>
+    <div class="products">
+      <!-- 30 Jewellery Products -->
+      <!-- Jewellery 1 to 30 -->
+      ${[...Array(30)].map((_,i)=>`
+      <div class="product">
+        <img src="https://via.placeholder.com/200x150?text=Jewellery+${i+1}" alt="Jewellery ${i+1}">
+        <h3>Jewellery ${i+1}</h3>
+        <p>₹${(i+1)*100}</p>
+        <a class="buy-btn" href="https://wa.me/91XXXXXXXXXX?text=I%20want%20to%20buy%20Jewellery%20${i+1}" target="_blank">Buy on WhatsApp</a>
+      </div>`).join('')}
+    </div>
+
+    <h2 data-en="Art Collection" data-hi="कला कलेक्शन">Art Collection</h2>
+    <div class="products">
+      <!-- 20 Art Products -->
+      ${[...Array(20)].map((_,i)=>`
+      <div class="product">
+        <img src="https://via.placeholder.com/200x150?text=Art+${i+1}" alt="Art ${i+1}">
+        <h3>Art ${i+1}</h3>
+        <p>₹${(i+1)*150}</p>
+        <a class="buy-btn" href="https://wa.me/91XXXXXXXXXX?text=I%20want%20to%20buy%20Art%20${i+1}" target="_blank">Buy on WhatsApp</a>
+      </div>`).join('')}
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 The Wings | Powered by Free GitHub Pages</p>
+  </footer>
+
+  <script>
+    // Render dynamic products
+    document.body.innerHTML = document.body.innerHTML.replace(/\$\{[^}]+\}/g, m => eval(m.slice(2,-1)));
+  </script>
+</body>
+</html>
